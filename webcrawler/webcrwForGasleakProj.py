@@ -8,14 +8,18 @@ Created on Sat Jul 29 15:05:20 2017
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 import pandas as pd
+
 ##setup environment
+
 print ("set up your work environment now,please input your Chromedriver location: ")
 driver = webdriver.Chrome(r'C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe')
 storepath = input("please input path for the output dataset: ")
 url = r'https://a810-dobnow.nyc.gov/publish/#'
 driver.get(url)
 driver.refresh()
+
 ##Readin data
+
 filepath = r"E:\gas leak project\webcr\sample.xlsx"
 dataset = pd.read_excel(filepath)
 primaryAddressList = []
@@ -25,6 +29,7 @@ detailinfolist=[]
 for i in range(len(dataset)):
     housenum = int(dataset.iloc[i,1])
     streetnum = str(dataset.iloc[i,2])+" "+str(dataset.iloc[i,3])+" "+str(dataset.iloc[i,4])
+    
 #start with method 1:
 #test passed:
     driver.find_element_by_id("housenumber").clear()
