@@ -6,17 +6,11 @@ import time
 from multiprocessing import Pool
 from selenium.common.exceptions import NoSuchElementException
 
-
-
-
 # Load the dataset
 filepath = r"E:/gas leak project/webcr/sample.xlsx"
 dataset = pd.read_excel(filepath)
 dataset = dataset.fillna('')   # convert missing value from NaN to empty string
 dataset['BIN Number'] = 'Not found'  # Pre-Assign the BIN number to Not found
-
-
-
 
 # Prepare the parameter
 address_list = []
@@ -24,9 +18,6 @@ for i in range(len(dataset)):
     housenum = int(dataset.iloc[i, 1])
     streetnum = (str(dataset.iloc[i, 2])+" "+str(dataset.iloc[i, 3])+" "+str(dataset.iloc[i, 4])).strip()
     address_list.append((i, housenum, streetnum))
-
-
-
 
 def get_content(address):
     # Load a web-driver
@@ -63,9 +54,6 @@ def get_content(address):
 
     return BIN_list
 
-
-
-
 if __name__ == '__main__':
 
     pool = Pool(2)
@@ -78,12 +66,8 @@ if __name__ == '__main__':
 
     new = dataset.merge(df, how='left', left_index=True, right_on='index')
 
-#    print(new)
-
-
-
 # Output to local excel file
-# storepath = '/Users/jiafengliu/Desktop/'
+# storepath = '/Users//Desktop/'
 # dataset.to_csv(storepath + 'output.csv')
 
 
